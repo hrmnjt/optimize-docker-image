@@ -7,6 +7,7 @@ Idea is to multi-stage build and alpine image (can be done using a scratch:lates
 For reference please read the blogs and official documentation:
 * https://docs.docker.com/develop/develop-images/multistage-build/
 * https://blog.alexellis.io/mutli-stage-docker-builds/
+* https://blog.codeship.com/building-minimal-docker-containers-for-go-applications/
 
 ## Usage
 
