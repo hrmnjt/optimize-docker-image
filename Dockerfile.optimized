@@ -15,13 +15,11 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
 # Multi-stage build step
 # Using scratch - creates 5 MB image (more optimized)
-#FROM scratch:latest
-#ADD ca-certificates.crt /etc/ssl/certs/
-#COPY --from=builder app /
-#CMD ["/app"]
 
 # Using the latest alpine image
 FROM alpine:latest
+# Adding ca-certificates in case we require SSL 
+#RUN apk --no-cache add ca-certificates
 # Changing the working directory to root location
 WORKDIR /root/
 # Copy the built binary for go application
