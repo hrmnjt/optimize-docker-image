@@ -7,5 +7,10 @@ Copy and paste optimized Dockerfile into the textbox. Your submission will be au
 https://docs.docker.com/develop/develop-images/multistage-build/
 https://blog.alexellis.io/mutli-stage-docker-builds/
 
+```sh
+docker build -t original-image:latest -f Dockerfile.original .
+docker run --name original-app -it original-image
 
-docker build -t hrmnjt/sample-go-image:latest -f Dockerfile
+docker build -t optimized-image:latest -f Dockerfile.optimized .
+docker run --name optimized-app -it optimized-image
+```
