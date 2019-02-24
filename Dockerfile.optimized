@@ -1,10 +1,30 @@
+################################################################################
+# File Name   : Dockerfile.optimized                                           #
+# Description : Dockerfile with multi-staged build with reduced footprint      #
+# Date        : 2019-02-24                                                     #
+# Version     : 1.0                                                            #
+################################################################################
+
+# Default dockerfile provided in problem statement
 FROM golang:1.7.3 as builder
 WORKDIR /go/src/
 RUN go get -d -v golang.org/x/net/html
 COPY app.go	.
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+# End of default dockerfile provided in problem statement
 
+# Multi-stage build step
+# Using scratch - creates 5 MB image (more optimized)
+#FROM scratch:latest
+#ADD ca-certificates.crt /etc/ssl/certs/
+#COPY --from=builder app /
+#CMD ["/app"]
+
+# Using the latest alpine image
 FROM alpine:latest
+# Changing the working directory to root location
 WORKDIR /root/
+# Copy the built binary for go application
 COPY --from=builder /go/src/app .
+# Run the binary to execute the app.go logic - print "hello world"
 CMD ["./app"]
