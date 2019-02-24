@@ -3,6 +3,7 @@
 # Description : Dockerfile with multi-staged build with reduced footprint      #
 # Date        : 2019-02-24                                                     #
 # Version     : 1.0                                                            #
+# Github      : https://github.com/hrmnjt/optimize-docker-image                #
 ################################################################################
 
 # Default dockerfile provided in problem statement
